@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.11.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mssql": "^10.0.1",
     "nodemon": "^3.0.2",
+    "pdf-lib": "^1.17.1",
     "pdfkit": "^0.14.0",
     "qrcode": "^1.5.3",
     "tedious": "^16.6.1"
