@@ -1,3 +1,4 @@
+/*
 import fs from 'fs';
 import PDFDocument from 'pdfkit';
 import sql from 'mssql'
@@ -30,9 +31,9 @@ const generateQRCodePDF = async () => {
     const doc = new PDFDocument();
 
 
-        /**
+        /!**
          * Try to call function @params {Function} dbConnect
-        */
+        *!/
 
 
 
@@ -61,6 +62,28 @@ const generateQRCodePDF = async () => {
 
 
 };
+*/
+
 
 // Call the function to generate QR codes in PDF
-generateQRCodePDF();
+// generateQRCodePDF();
+
+// frontend/src/App.js
+/*import React, { useEffect, useState } from 'react';
+
+function App() {
+    const [message, setMessage] = useState('');
+    useEffect(() => {
+        fetch('/')
+            .then((res) => res.text())
+            .then((data) => setMessage(data))
+            .catch((err) => console.log(err));
+    }, []);
+    return (
+        <div>
+            <h1>{message}</h1>
+        </div>
+    );
+}
+export default App;*/
+
