@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Imprimir vinetas</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body>
+<h1>Introduce el codigo del articulo(6 digitos)</h1>
+
+<form action="/codigos" method="POST" class="buttons">
+    <label for="choice">Codigo de articulo a imprimir</label>
+
+    <input type="text" id="t" name="choice"/>
+    <input type="submit" value="Enviar"/>
+</form>
+<div id="recipeContainer" class="hidden">
+
+    <!-- If no recipe yet, show: -->
+    <% if(!locals.arr1){ %>
+
+    <% }else{ %>
+        <!-- Else, show the recipe name e.g. <h2>Recipe name</h2>-->
+        <h1>
+            <%= arr1.id + " " + arr1.name %>
+        </h1>
+
+        <h3>Resultados:</h3>
+        <ul id="ingredientsList">
+            <li><%= arr1.ingredients.protein.name%>, <%= arr1.ingredients.protein.preparation %> </li>
+            <li><%= arr1.ingredients.salsa.name%></li>
+            <% for(let i = 0; i < arr1.ingredients.toppings.length; i++) { %>
+                <li><%= arr1.ingredients.toppings[i].quantity%> of <%= arr1.ingredients.toppings[i].name%></li>
+            <% } %>
+        </ul>
+    <% } %>
+
+
+
+</div>
+</body>
+
+</html>

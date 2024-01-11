@@ -1,4 +1,4 @@
-import sql from 'mssql';
+/* import sql from 'mssql';
 
 //Funcion utilizada para crear una configuracion y conexion a la base de datos a ser utilizada para ver registros
 function  dbConnect() {
@@ -53,5 +53,5 @@ function  dbConnect() {
 
 
 
- //dbConnect();
-export default dbConnect;
+ dbConnect();
+export default dbConnect; */
