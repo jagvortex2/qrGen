@@ -1,35 +1,28 @@
-
-
-
-
-
 # Use an official Node.js runtime as a base image
-FROM node:latest as build
+#FROM node@sha256:ac4c91bdd9cd1293e312096029570d1419330f151ca96756919c665c65a25cf6
+FROM node:current-bullseye-slim 
+
+#Install dumb-init
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
+
+#Set production ready
+#ENV NODE_ENV production
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Copy to the working directory and DROP PRIVILEGES
+COPY --chown=node:node . /usr/src/app/
 
 # Install app dependencies
-RUN NODE_ENV=development npm i
+RUN  npm install
 
+#USER 
+USER node
 
-# Copy the rest of the application code to the working directory
-COPY . .
+# Expose port 5000
+#EXPOSE 5000
 
-# Build the React app
-RUN npm run build
-
-# Use a smaller Nginx image to serve the built app
-FROM nginx:alpine
-
-# Copy the built app from the previous stage to the default Nginx public directory
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
 
 # Command to run when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["dumb-init", "npm", "start"]

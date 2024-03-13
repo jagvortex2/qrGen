@@ -105,7 +105,9 @@ app.get('/articulos', async (req, res) => {
         //Create a connection Pool
         const pool = await sql.connect(config);
         //Query the database
-        const result = await pool.query('SELECT ARTICULO, DESCRIPCION FROM SOFTLAND.CANNYSHOP.ARTICULO_COMPRA WHERE Descripcion != \'\';');
+        const result = await pool.query('SELECT ARTICULO, DESCRIPCION FROM SOFTLAND.CANNYSHOP.ARTICULO WHERE (DESCRIPCION != \'\' OR DESCRIPCION NOT LIKE NULL) AND LEN(ARTICULO) = 6 AND ISNUMERIC(ARTICULO) = 1 UNION SELECT ARTICULO, DESCRIPCION FROM SOFTLAND.CANNYSHOP.ARTICULO_COMPRA WHERE (DESCRIPCION != \'\' OR DESCRIPCION NOT LIKE NULL) AND LEN(ARTICULO) = 6 AND ISNUMERIC(ARTICULO) = 1 ORDER BY DESCRIPCION ASC');
+        //Testing a union query 
+        //const result = await pool.query('SELECT ARTICULO, DESCRIPCION FROM SOFTLAND.CANNYSHOP.ARTICULO_COMPRA WHERE Descripcion != \'\';');
         // console.log(result);
         const records = result.recordset;
         console.log('Success!');
